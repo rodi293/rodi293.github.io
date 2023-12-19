@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Painting</title>
+</head>
+<body>
+
+
+    <div class="box">
+        <div class="max-w-xs mx-auto p-4 bg-white rounded-md shadow-md h-full">
+             <!-- 제시어 설정 -->
+             <div class="mb-4">
+               <label for="word-input" class="block text-sm font-medium text-gray-600">제시어 입력:</label>
+               <input type="text" id="word-input" class="mt-1 p-2 border rounded-md w-full">
+               <button onclick="setWord()" class="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 w-full">설정</button>
+             </div>
+           
+             <!-- 제시어 표시 -->
+             <div class="mb-4">
+               <h2 class="text-lg font-medium text-gray-800 mb-2">제시어:</h2>
+               <span id="word-display" class="text-xl font-semibold"></span>
+             </div>
+
+        </div>
+   </div>
+
+   <script>
+     let 현재단어 = "";
+
+     // localStorage에서 값 불러와서 초기화
+     window.onload = function() {
+       const 저장된값 = localStorage.getItem("Value");
+       if (저장된값) {
+         현재단어 = 저장된값;
+         document.getElementById("word-display").textContent = 현재단어.split('').join(' ');
+         document.getElementById("word-input").value = 저장된값;
+       }
+     };
+   
+     function setWord() {
+       const 입력값 = document.getElementById("word-input").value;
+       현재단어 = 입력값;
+       document.getElementById("word-display").textContent = 현재단어.split('').join(' ');
+
+       // localStorage에 값을 설정
+       localStorage.setItem("Value", 입력값);
+     }
+   </script>
+</body>
+</html>

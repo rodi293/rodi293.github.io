@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Painting</title>
+    </script>
+</head>
+
+<body>
+
+
+    <div id="timer-container" class="text-center">
+        <h1 class="text-2xl font-bold mb-2">타이머</h1>
+        <div id="timer">30</div>
+    </div>
+
+    <div class="text-center mt-4">
+        <button id="startButton" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+            시작
+        </button>
+    </div>
+
+    <script>
+        let seconds; // 초기값을 랜덤으로 설정
+
+        function getRandomTime() {
+            // 10, 20, 30 중 랜덤으로 시간을 선택
+            const randomSeconds = [10, 20, 30];
+            return randomSeconds[Math.floor(Math.random() * randomSeconds.length)];
+        }
+
+        function updateTimer() {
+            document.getElementById('timer').innerText = seconds;
+            if (seconds === 0) {
+                alert('타이머 종료!');
+                disableControls();
+            } else {
+                seconds--;
+                setTimeout(updateTimer, 1000);
+            }
+        }
+
+        // 'start' 버튼 클릭 시 호출될 함수
+        function startTimer() {
+            // localStorage에서 값 가져오기
+            receivedValue = localStorage.getItem("Value") || '';
+            
+            // 값이 있다면 타이머 시작
+            if (receivedValue) {
+                // 랜덤한 시간으로 타이머 설정
+                seconds = getRandomTime();
+                // 타이머 시작
+                updateTimer();
+            } else {
+                alert('값을 먼저 설정하세요!');
+            }
+        }
+
+        // 'start' 버튼에 이벤트 리스너 등록
+        const startButton = document.getElementById('startButton');
+        startButton.addEventListener('click', startTimer);
+    </script>
+
+<body>
+    <div class="controls">
+        <canvas id="jsCanvas" class="canvas mb-10"></canvas>
+        <div class="controls__btns">
+            <button id="jsMode">Fill</button>
+            <button id="jsSave">Save</button></div>
+        <div class="controls__range">
+            <input type="range" id="jsRange"
+             min="0.1" max="50" value="2.5" step="0.1"/>
+        </div>
+            
+        <div class="controls__colors mb-2" id="jsColors" >
+            <div class="controls__color jsColor" 
+                 style="background-color: black;"></div>
+            <div class="controls__color jsColor" 
+                 style="background-color: white;"></div>
+            <div class="controls__color jsColor" 
+                 style="background-color: red;"></div>
+            <div class="controls__color jsColor" 
+                 style="background-color: orange;"></div>
+            <div class="controls__color jsColor" 
+                 style="background-color: yellow;"></div>
+            <div class="controls__color jsColor" 
+                 style="background-color: green;"></div>
+            <div class="controls__color jsColor" 
+                 style="background-color: blue;"></div>
+            <div class="controls__color jsColor" 
+                 style="background-color: navy;"></div>
+            <div class="controls__color jsColor" 
+                 style="background-color: purple;"></div>
+        </div>
+        
+     <script src="app.js"></script>
+
+     <div class="box h-full flex items-center justify-center">
+          <div class="max-w-xs mx-auto p-4 bg-white rounded-md shadow-md">
+              <!-- 정답 확인 -->
+              <div>
+                  <label for="answer-input" class="block text-sm font-medium text-gray-600">정답 입력:</label>
+                  <input type="text" id="answer-input" class="mt-1 p-2 border rounded-md ">
+                  <button onclick="checkAnswer()" class="mt-2 px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 w-full">확인</button>
+              </div>
+          </div>
+      </div>
+      <div id="output"></div>
+      
+     
+     <script>
+          var receivedValue = localStorage.getItem("Value") || '';
+          updateValue();
+  
+          window.addEventListener("storage", updateValue);
+  
+          function updateValue() {
+              receivedValue = localStorage.getItem("Value") || '';
+              document.getElementById("word-display").textContent = receivedValue;
+          }
+
+         function checkAnswer() {
+           const 입력값 = document.getElementById("answer-input").value.toLowerCase();
+           const 정답여부 = 입력값 === receivedValue.toLowerCase();
+           
+           if (정답여부) {
+             alert("정답입니다!");
+           } else {
+             alert("틀렸습니다.");
+           }
+         }
+
+
+
+       </script>
+     
+</body>
+
+</html>
