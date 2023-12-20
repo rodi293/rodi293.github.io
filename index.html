@@ -25,7 +25,8 @@
     </div>
 
     <script>
-        let seconds; // 초기값을 랜덤으로 설정
+        let seconds; // 랜덤 초기값
+        let timerActive = false; // 타이머 활성 여부 변수
 
         function getRandomTime() {
             // 10, 20, 30 중 랜덤으로 시간을 선택
@@ -44,20 +45,36 @@
             }
         }
 
+
         // 'start' 버튼 클릭 시 호출될 함수
         function startTimer() {
             // localStorage에서 값 가져오기
             receivedValue = localStorage.getItem("Value") || '';
-            
+
             // 값이 있다면 타이머 시작
             if (receivedValue) {
                 // 랜덤한 시간으로 타이머 설정
                 seconds = getRandomTime();
                 // 타이머 시작
                 updateTimer();
+
+                // 타이머가 활성화되었음을 표시
+                timerActive = true;
+
+                // 캔버스 클릭 활성화
+                document.getElementById('jsCanvas').style.pointerEvents = 'auto';
             } else {
                 alert('값을 먼저 설정하세요!');
             }
+        }
+
+        // 타이머 종료 시 호출될 함수
+        function disableControls() {
+            // 타이머가 비활성화되었음을 표시
+            timerActive = false;
+
+            // 캔버스 클릭 비활성화
+            document.getElementById('jsCanvas').style.pointerEvents = 'none';
         }
 
         // 'start' 버튼에 이벤트 리스너 등록
