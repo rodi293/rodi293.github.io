@@ -70,12 +70,11 @@ function handleCanvasClick() {
     }
   }
 
-// 우클릭 방지
-/*
+
 function handleCM(event) {
    event.preventDefault();
  }
- */
+ 
 
  function handleSaveClick() {
   // localStorage에서 입력값 가져오기
