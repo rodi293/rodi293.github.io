@@ -9,8 +9,11 @@
     <title>Painting</title>
     </script>
     <script>
-        document.oncontextmenu = function(){return false;}
-    </script>
+        document.addEventListener('contextmenu', function (event) {
+          // 우클릭 이벤트를 막습니다.
+          event.preventDefault();
+        });
+      </script>
 </head>
 
 <body>
