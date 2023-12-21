@@ -43,50 +43,17 @@ function onMouseMove(event) {
     }
 }
 
-document.addEventListener('keydown', handleKeyPress);
-
-function handleKeyPress(event) {
-  // 키보드 입력에서 숫자 1부터 9까지에 해당하는 키 코드를 사용하여 색상 변경
-  switch (event.key) {
-    case '1':
-      changeColor('#000000'); // 예시로 검은색
-      break;
-    case '2':
-      changeColor('#ffffff'); // 예시로 흰색
-      break;
-
-    case '3':
-      changeColor('#ff0000'); // 예시로 빨간색
-      break;
-    case '4':
-      changeColor('#0000ff'); // 예시로 파란색
-      break;
-    case '5':
-      changeColor('#00ff00'); // 예시로 녹색
-      break;
-
-
-
-
-
-
-    default:
-      break;
-  }
-}
-
-function changeColor(color) {
+function handleColorClick(event) {
+  const color = event.target.style.backgroundColor;
   ctx.strokeStyle = color;
   ctx.fillStyle = color;
 }
-function handleRangeChange(event) {
-  const size = event.target.value;
-  ctx.lineWidth = size;
-}
 
-if (range) {
-  range.addEventListener("input", handleRangeChange);
-}
+function handleRangeChange(event) {
+    const size = event.target.value;
+    ctx.lineWidth = size;
+  }
+
 function handleModeClick() {
  if (filling === true) {
    filling = false;
