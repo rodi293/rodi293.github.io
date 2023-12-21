@@ -55,7 +55,7 @@ function handleKeyPress(event) {
       changeColor('#ffffff'); // 예시로 흰색
       break;
 
-    case '3':1
+    case '3':
       changeColor('#ff0000'); // 예시로 빨간색
       break;
     case '4':
