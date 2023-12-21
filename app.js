@@ -79,12 +79,14 @@ function changeColor(color) {
   ctx.strokeStyle = color;
   ctx.fillStyle = color;
 }
-
 function handleRangeChange(event) {
-    const size = event.target.value;
-    ctx.lineWidth = size;
-  }
+  const size = event.target.value;
+  ctx.lineWidth = size;
+}
 
+if (range) {
+  range.addEventListener("input", handleRangeChange);
+}
 function handleModeClick() {
  if (filling === true) {
    filling = false;
